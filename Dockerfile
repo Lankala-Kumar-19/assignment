@@ -1,5 +1,5 @@
 # Use official OpenJDK image with specific tag for stability
-FROM openjdk:17.0.9-jdk-slim
+FROM openjdk:17-slim
 
 WORKDIR /app
 
