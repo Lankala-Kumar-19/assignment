@@ -1,14 +1,11 @@
-# Use official OpenJDK image
-FROM openjdk:17-jdk-slim
+# Use official OpenJDK image with specific tag for stability
+FROM openjdk:17.0.9-jdk-slim
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the jar file
+# Copy jar from assignment/target since your jar is inside that folder
 COPY assignment/target/assignment-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose the port (Render will set PORT env)
 EXPOSE 8080
 
-# Run the jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
