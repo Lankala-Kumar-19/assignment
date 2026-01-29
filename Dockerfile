@@ -20,4 +20,4 @@ RUN ./mvnw clean package -DskipTests
 EXPOSE 8080
 
 # Start the app
-CMD ["java", "-jar", "target/assigment-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "assigment/target/assigment-0.0.1-SNAPSHOT.jar"]
