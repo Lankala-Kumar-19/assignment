@@ -1,5 +1,5 @@
 # Use official OpenJDK 17 image
-FROM openjdk:17
+FROM eclipse-temurin:17-jdk
 
 # Set working directory
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN chmod +x mvnw
 # Build the project
 RUN ./mvnw clean package -DskipTests
 
-# Expose the port
+# Expose the port Render will assign
 EXPOSE 8080
 
 # Start the app
