@@ -1,11 +1,23 @@
-# Use official OpenJDK image with specific tag for stability
-FROM openjdk:17-slim
+# Use official OpenJDK 17 image
+FROM openjdk:17
 
+# Set working directory
 WORKDIR /app
 
-# Copy jar from assignment/target since your jar is inside that folder
-COPY assignment/target/assignment-0.0.1-SNAPSHOT.jar app.jar
+# Copy Maven wrapper, pom, and source code
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
 
+# Give execution permission to Maven wrapper
+RUN chmod +x mvnw
+
+# Build the project
+RUN ./mvnw clean package -DskipTests
+
+# Expose the port
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Start the app
+CMD ["java", "-jar", "target/assigment-0.0.1-SNAPSHOT.jar"]
