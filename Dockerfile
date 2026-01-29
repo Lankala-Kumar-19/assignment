@@ -4,11 +4,11 @@ FROM eclipse-temurin:17-jdk
 # Set working directory
 WORKDIR /app
 
-# Copy Maven wrapper, pom, and source code
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
-COPY src src
+# Copy Maven wrapper, pom, and source code from the assignment folder
+COPY assignment/mvnw .
+COPY assignment/.mvn .mvn
+COPY assignment/pom.xml .
+COPY assignment/src src
 
 # Give execution permission to Maven wrapper
 RUN chmod +x mvnw
