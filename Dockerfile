@@ -1,22 +1,20 @@
 # Use official OpenJDK 17 image
 FROM eclipse-temurin:17-jdk
 
+# Set working directory
 WORKDIR /app
 
-# Copy project contents **flattened** (no nested assignment folder)
-COPY assignment/mvnw .
-COPY assignment/.mvn .mvn
-COPY assignment/pom.xml .
-COPY assignment/src src
+# Copy the entire assignment folder
+COPY assignment assignment
 
 # Make Maven wrapper executable
-RUN chmod +x mvnw
+RUN chmod +x assignment/mvnw
 
-# Build the JAR
-RUN ./mvnw clean package -DskipTests
+# Build the project using Maven inside the nested folder
+RUN ./assignment/mvnw -f assignment/pom.xml clean package -DskipTests
 
-# Expose port
+# Expose the port Render will assign
 EXPOSE 8080
 
-# Run the JAR
-CMD ["java", "-jar", "target/assigment-0.0.1-SNAPSHOT.jar"]
+# Start the app using the correct JAR name
+CMD ["java", "-jar", "assignment/target/assignment-0.0.1-SNAPSHOT.jar"]
