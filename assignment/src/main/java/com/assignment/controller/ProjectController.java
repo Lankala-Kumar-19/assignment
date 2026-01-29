@@ -60,14 +60,14 @@ public class ProjectController {
     }
 
     // Delete Project (Admin)
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/id/{id}")
     public ResponseEntity<ProjectResponseDTO> deleteProjectById(
             @PathVariable String id) {
 
         return ResponseEntity.ok(projectService.deleteProjectById(id));
     }
 
-    @DeleteMapping("/delete/{name}")
+    @DeleteMapping("/delete/name/{name}")
     public ResponseEntity<ProjectResponseDTO> deleteProjectByName(
             @PathVariable String name) {
 
